@@ -10,21 +10,44 @@ const App = () => {
   const part3 = 'Komponenttien tila'
   const exercises3 = 14
 
-  return (
-    <div>
-      <h1>{course}</h1>
-      <p>
-        {part1} {exercises1}
-      </p>
-      <p>
-        {part2} {exercises2}
-      </p>
-      <p>
-        {part3} {exercises3}
-      </p>
-      <p>yhteensä {exercises1 + exercises2 + exercises3} tehtävää</p>
-    </div>
-  )
+    return (
+        <>
+            <Header course={course} />
+            <Content part={part1} exercise = {exercises1} />
+            <Content part={part2} exercise = {exercises2} />
+            <Content part={part3} exercise = {exercises3} />
+
+            <Total total={exercises1+exercises2+exercises3} />    
+        </>
+    )
 }
+const Header = (props) => {
+    return (
+        <div>
+            <h1>{props.course}</h1>
+        </div>
+    )
+}
+
+const Content = (props) => {
+    return (
+        <div>
+            <p>
+                {props.part} {props.exercise}
+            </p>
+        </div>
+    )
+}
+
+const Total = (props) => {
+    return (
+        <p>
+            yhteensä {props.total} tehtävää
+        </p>
+
+    )
+}
+
+
 
 ReactDOM.render(<App />, document.getElementById('root'))
