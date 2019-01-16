@@ -32,6 +32,14 @@ const Header = (props) => {
 const Content = (props) => {
     return (
         <div>
+            <Part part = {props.part} exercise = {props.exercise} />
+        </div>
+    )
+}
+
+const Part = (props) => {
+    return (
+        <div>
             <p>
                 {props.part} {props.exercise}
             </p>
