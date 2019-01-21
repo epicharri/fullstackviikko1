@@ -14,6 +14,12 @@ const Button = (props) => (
   </button>
 )
 
+const Statistic = ({text, value}) => (
+  <div>
+    <p>{text} {value}</p>
+  </div>
+)
+
 const Statistics = ({good, neutral, bad}) => {
 
   let summa = good + neutral + bad
@@ -30,12 +36,12 @@ const Statistics = ({good, neutral, bad}) => {
   return (
     <div>
       <h1>Statistiikka</h1>
-      <Display text='Hyvä' value={good}/>
-      <Display text='Neutraali' value = {neutral}/>
-      <Display text='Huono' value = {bad}/>
-      <Display text='Yhteensä' value = { summa } />
-      <Display text='Keskiarvo' value = { keskiarvo } />
-      <Display text='Positiivisia' value = { prosenttia + ' %'}/>
+      <Statistic text='Hyvä' value={good}/>
+      <Statistic text='Neutraali' value = {neutral}/>
+      <Statistic text='Huono' value = {bad}/>
+      <Statistic text='Yhteensä' value = { summa } />
+      <Statistic text='Keskiarvo' value = { keskiarvo } />
+      <Statistic text='Positiivisia' value = { prosenttia + ' %'}/>
     </div>
   )
 }
