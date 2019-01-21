@@ -23,6 +23,7 @@ const App = () => {
     return (
         <>
             <Header course={course} />
+            
             <Content course={course} />
             <Total course={course} />    
         </>
@@ -60,6 +61,11 @@ const Part = (props) => {
 
 const Total = (props) => {
     
+    console.log('props', props)
+    console.log('props.course', props.course)
+    console.log('props.course.parts', props.course.parts)
+    console.log('props.course.parts[0]', props.course.parts[0])
+
     return (
         <div>
             <p>
