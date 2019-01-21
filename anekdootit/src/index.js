@@ -10,20 +10,33 @@ const Button = ({handleClick, text}) => (
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [aaniluettelo, setAanet] = useState(props.aaniluettelo)
 
   const arpominen = () => {
     setSelected(Math.floor(Math.random()*6))
+  }
+
+  const aanestys = () => {
+      
+      const kopio = [...aaniluettelo]
+      kopio.fill(kopio[selected] + 1, selected, selected+1)
+      setAanet(kopio)
   }
 
   return (
     <div>
       <p>
         <Button handleClick={arpominen} text='Arvo uusi'></Button>
+
+        <Button handleClick={aanestys} text='Äänestä'></Button>
       </p>
-     {props.anecdotes[selected]}
+     <p>{props.anecdotes[selected]}</p>
+     <p>Ääniä {aaniluettelo[selected]}</p>
     </div>
   )
 }
+
+const aaniluettelo = [0,0,0,0,0,0]
 
 const anecdotes = [
   'If it hurts, do it more often',
@@ -35,6 +48,6 @@ const anecdotes = [
 ]
 
 ReactDOM.render(
-  <App anecdotes={anecdotes} />,
+  <App anecdotes={anecdotes} aaniluettelo={aaniluettelo} />,
   document.getElementById('root')
 )
