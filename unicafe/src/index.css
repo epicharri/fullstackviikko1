@@ -8,7 +8,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 5px;
+  margin: 5px;
 }
+
 
 button {
   background-color: #3F51B5;

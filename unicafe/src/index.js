@@ -48,9 +48,15 @@ const App = () => {
         <Button handleClick={handleBadClick} text='huono'></Button>
       </>
       <h1>Statistiikka</h1>
-      <Display text='hyvä' value={good}/>
-      <Display text='neutraali' value = {neutral}/>
-      <Display text='huono' value = {bad}/>
+        <Display text='Hyvä' value={good}/>
+        <Display text='Neutraali' value = {neutral}/>
+        <Display text='Huono' value = {bad}/>
+        <Display text='Yhteensä' value = {good + neutral + bad} />
+        <Display text='Keskiarvo' value = 
+        { (good+neutral+bad == 0) ? 0 :
+          (1*good+0*neutral+(-1)*bad)/(good+neutral+bad)} />
+        <Display text='Positiivisia' 
+        value = {(good == 0) ? '0%' : 100*good/(good+neutral+bad)+' %'}/>
     </div>
   )
 }
