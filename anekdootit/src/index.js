@@ -30,6 +30,7 @@ const App = (props) => {
       return (
           <div>
               <p>{props.anecdotes[eniten]}</p>
+              <p>Ääniä {aaniluettelo[eniten]}</p>
           </div>
       )
   }
