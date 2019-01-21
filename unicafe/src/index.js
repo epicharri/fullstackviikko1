@@ -21,6 +21,12 @@ const Statistics = ({good, neutral, bad}) => {
   let keskiarvo = good == 0 ? 0 : pisteet / summa
   let prosenttia = good == 0 ? 0 : 100 * good / summa
 
+  if (summa === 0) return(
+  <div>
+    <p>Ei yhtään palautetta annettu</p>
+  </div>
+  )
+
   return (
     <div>
       <h1>Statistiikka</h1>
