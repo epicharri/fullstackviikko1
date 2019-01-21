@@ -22,6 +22,18 @@ const App = (props) => {
       setAanet(kopio)
   }
 
+  const ParasAnekdootti = () => {
+      let eniten = 0
+      for (let i = 0; i < 6; i++){
+        if(aaniluettelo[i]>aaniluettelo[eniten]) eniten = i 
+      }
+      return (
+          <div>
+              <p>{props.anecdotes[eniten]}</p>
+          </div>
+      )
+  }
+
   return (
     <div>
       <p>
@@ -29,8 +41,13 @@ const App = (props) => {
 
         <Button handleClick={aanestys} text='Äänestä'></Button>
       </p>
+      <h1>Anecdote of the day</h1>
      <p>{props.anecdotes[selected]}</p>
      <p>Ääniä {aaniluettelo[selected]}</p>
+
+    <h1>Anecdote with most votes</h1>
+    <ParasAnekdootti />
+
     </div>
   )
 }
