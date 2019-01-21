@@ -17,7 +17,6 @@ const App = (props) => {
   }
 
   const aanestys = () => {
-      
       const kopio = [...aaniluettelo]
       kopio.fill(kopio[selected] + 1, selected, selected+1)
       setAanet(kopio)
