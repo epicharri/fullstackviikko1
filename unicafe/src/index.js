@@ -2,11 +2,6 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
-const Display = ({text, value}) => (
-  <div>
-    <p>{text} {value}</p>
-  </div>
-)
 
 const Button = (props) => (
   <button onClick={props.handleClick}>
@@ -15,17 +10,17 @@ const Button = (props) => (
 )
 
 const Statistic = ({text, value}) => (
-  <div>
-    <p>{text} {value}</p>
-  </div>
+    <div>
+      <p>{text} {value}</p>
+    </div>
 )
 
 const Statistics = ({good, neutral, bad}) => {
 
   let summa = good + neutral + bad
   let pisteet = 1*good + 0*neutral + (-1)*bad
-  let keskiarvo = good == 0 ? 0 : pisteet / summa
-  let prosenttia = good == 0 ? 0 : 100 * good / summa
+  let keskiarvo = summa === 0 ? 0 : pisteet / summa
+  let prosenttia = good === 0 ? 0 : 100 * good / summa
 
   if (summa === 0) return(
   <div>
@@ -71,7 +66,7 @@ const App = () => {
 
 
   return (
-    <div class="container">
+    <div>
       <h1>Anna palautetta</h1>
       <>
         <Button handleClick={handleGoodClick} text='hyvä'></Button>
