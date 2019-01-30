@@ -2,21 +2,25 @@ import React, { useState } from "react"
 import "./App.css"
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: 'Harri Kähkönen', id: 1 }])
+  const [persons, setPersons] = useState([{ name: "Harri Kähkönen", id: 1 }])
   const [newName, setNewName] = useState("")
 
-  const handleNewName = (event) => {
+  const handleNewName = event => {
     event.preventDefault()
     setNewName(event.target.value)
   }
 
-  const addPerson = (event) => {
+  const addPerson = event => {
     event.preventDefault()
-  
-    setPersons(persons.concat({
-      name: newName,
-      id: persons.length + 1
-    }))
+    if (!persons.map(person => person.name).includes(newName)) {
+      setPersons(
+        persons.concat({
+          name: newName,
+          id: persons.length + 1
+        })
+      )
+    } else window.alert(`${newName} on jo luettelossa!`)
+
   }
 
   return (
@@ -24,11 +28,7 @@ const App = () => {
       <h2>Puhelinluettelo</h2>
       <form onSubmit={addPerson}>
         <div>
-          nimi: <input 
-          value={newName}
-          onChange={handleNewName}
-           />
-      
+          nimi: <input value={newName} onChange={handleNewName} />
           <button type="submit">Lisää</button>
         </div>
       </form>
