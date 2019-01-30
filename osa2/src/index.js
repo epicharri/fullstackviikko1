@@ -1,90 +1,56 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import Course from './components/Course'
+import './index.css'
 
 const App = () => {
-  const Course = props => {
-    const { course } = props
 
-    const Header = props => {
-      return (
-        <div>
-          <h1>{course.name}</h1>
-        </div>
-      )
+  const courses = [
+    {
+      name: "Half Stack -sovelluskehitys",
+      id: 1,
+      parts: [
+        {
+          name: "Reactin perusteet",
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: "Tiedonvälitys propseilla",
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: "Komponenttien tila",
+          exercises: 14,
+          id: 3
+        }
+      ]
+    },
+    {
+      name: "Node.js",
+      id: 2,
+      parts: [
+        {
+          name: "Routing",
+          exercises: 2,
+          id: 1
+        },
+        {
+          name: "Middlewaret",
+          exercises: 7,
+          id: 2
+        }
+      ]
     }
-
-    const Content = props => {
-      return (
-        <div>
-          {props.course.parts.map((part, id) => {
-            return <Part key={id} part={part} />
-          })}
-        </div>
-      )
-    }
-
-    const Part = props => {
-      return (
-        <div key={props.part.id}>
-          <p>
-            {props.part.name} {props.part.exercises}
-          </p>
-        </div>
-      )
-    }
-
-    const Total = props => {
-      const { course } = props
-      console.log("props", props)
-      console.log("props.course", props.course)
-      console.log("props.course.parts", props.course.parts)
-      console.log("props.course.parts[0]", props.course.parts[0])
-
-      return (
-        <div>
-          <p>
-            yhteensä{" "}
-            {course.parts
-              .map(part => part.exercises)
-              .reduce((total, luku) => total + luku)}{" "}
-            tehtävää
-          </p>
-        </div>
-      )
-    }
-    return (
-      <>
-        <Header course={course} />
-        <Content course={course} />
-        <Total course={course} />
-      </>
-    )
-  }
-
-  const course = {
-    name: "Half Stack -sovelluskehitys",
-    parts: [
-      {
-        name: "Reactin perusteet",
-        exercises: 10,
-        id: 1
-      },
-      {
-        name: "Tiedonvälitys propseilla",
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: "Komponenttien tila",
-        exercises: 14,
-        id: 3
-      }
-    ]
-  }
+  ]
 
   return (
     <div>
-      <Course course={course} />
+      <h1>Opetusohjelma</h1>
+      {courses.map(x => {
+        return <Course key={x.id} course={x} />
+      })}
     </div>
   )
 }
