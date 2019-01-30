@@ -2,9 +2,14 @@ import React, { useState } from "react"
 import "./App.css"
 
 const App = () => {
-  const [persons, setPersons] = useState([{ name: "Harri Kähkönen", number:"044-1234567", id: 1 }])
+  const [persons, setPersons] = useState([
+    { name: "Harri Kähkönen", number: "044-1234567", id: 1 },
+    { name: "Frozen Elsa", number: "111-111111", id: 2 },
+    { name: "Lumi Ukko", number: "222-22222", id: 3 }
+  ])
   const [newName, setNewName] = useState("")
   const [newNumber, setNewNumber] = useState("")
+  const [newSearch, setNewSearch] = useState("")
 
   const handleNewName = event => {
     event.preventDefault()
@@ -14,6 +19,11 @@ const App = () => {
   const handleNewNumber = event => {
     event.preventDefault()
     setNewNumber(event.target.value)
+  }
+
+  const handleNewSearch = event => {
+    event.preventDefault()
+    setNewSearch(event.target.value)
   }
 
   const addPerson = event => {
@@ -27,23 +37,33 @@ const App = () => {
         })
       )
     } else window.alert(`${newName} on jo luettelossa!`)
-
   }
+
 
   return (
     <div>
       <h2>Puhelinluettelo</h2>
+      <div>
+        Hae: <input value={newSearch} onChange={handleNewSearch} />
+      </div>
       <form onSubmit={addPerson}>
         <div>
-          nimi: <input value={newName} onChange={handleNewName} />
-          numero: <input value={newNumber} onChange={handleNewNumber} />
+          Nimi: <input value={newName} onChange={handleNewName} />
+          Numero: <input value={newNumber} onChange={handleNewNumber} />
           <button type="submit">Lisää</button>
         </div>
       </form>
       <h2>Numerot</h2>
-      {persons.map(person => {
-        return <div key={person.id}>{person.name} {person.number}</div>
-      })}
+
+      {persons
+        .filter(person => person.name.toLocaleLowerCase().includes(newSearch.toLocaleLowerCase()))
+        .map(person => {
+          return (
+            <div key={person.id}>
+              {person.name} {person.number}
+            </div>
+          )
+        })}
     </div>
   )
 }
