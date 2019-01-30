@@ -1,6 +1,57 @@
 import React, { useState } from "react"
 import "./App.css"
 
+const Input = props => {
+  const { text, newSomething, handleNewSomething } = props
+  return (
+    <div>
+      {text} <input value={newSomething} onChange={handleNewSomething} />
+    </div>
+  )
+}
+
+const Listing = props => {
+  const { persons, newSearch } = props
+  return persons
+    .filter(person =>
+      person.name.toLocaleLowerCase().includes(newSearch.toLocaleLowerCase())
+    )
+    .map(person => {
+      return (
+        <div key={person.id}>
+          {person.name} {person.number}
+        </div>
+      )
+    })
+}
+
+const ReadPerson = props => {
+  const {
+    addPerson,
+    newName,
+    handleNewName,
+    newNumber,
+    handleNewNumber
+  } = props
+  return (
+    <form onSubmit={addPerson}>
+      <div>
+        <Input
+          text={"Nimi: "}
+          newSomething={newName}
+          handleNewSomething={handleNewName}
+        />
+        <Input
+          text={"Numero: "}
+          newSomething={newNumber}
+          handleNewSomething={handleNewNumber}
+        />
+        <button type="submit">Lisää</button>
+      </div>
+    </form>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: "Harri Kähkönen", number: "044-1234567", id: 1 },
@@ -36,34 +87,31 @@ const App = () => {
           id: persons.length + 1
         })
       )
+      setNewName("")
+      setNewNumber("")
+      setNewSearch("")
     } else window.alert(`${newName} on jo luettelossa!`)
   }
-
 
   return (
     <div>
       <h2>Puhelinluettelo</h2>
-      <div>
-        Hae: <input value={newSearch} onChange={handleNewSearch} />
-      </div>
-      <form onSubmit={addPerson}>
-        <div>
-          Nimi: <input value={newName} onChange={handleNewName} />
-          Numero: <input value={newNumber} onChange={handleNewNumber} />
-          <button type="submit">Lisää</button>
-        </div>
-      </form>
+      <Input
+        text={"Hae: "}
+        newSomething={newSearch}
+        handleNewSomething={handleNewSearch}
+      />
+      <ReadPerson
+        addPerson={addPerson}
+        newName={newName}
+        handleNewName={handleNewName}
+        newNumber={newNumber}
+        handleNewNumber={handleNewNumber}
+      />
+
       <h2>Numerot</h2>
 
-      {persons
-        .filter(person => person.name.toLocaleLowerCase().includes(newSearch.toLocaleLowerCase()))
-        .map(person => {
-          return (
-            <div key={person.id}>
-              {person.name} {person.number}
-            </div>
-          )
-        })}
+      <Listing persons={persons} newSearch={newSearch} />
     </div>
   )
 }
