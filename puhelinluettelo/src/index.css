@@ -11,7 +11,35 @@ body {
 
 }
 
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.error {
+  color: white;
+  background-color: red;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: white;
+  background-color: green;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.normal {
+  color: white;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
