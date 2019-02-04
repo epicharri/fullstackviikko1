@@ -23,7 +23,11 @@ const Input = props => {
 }
 
 const Listing = props => {
-  const { maat, newSearch } = props
+  const {
+    maat,
+    newSearch,
+    setNewSearch
+  } = props
 
   const kivatMaat = maat.filter(maa =>
     maa.name
@@ -68,7 +72,7 @@ const Listing = props => {
       <div>
         <p>
           Tuloksia yli 10, tarkenna
-          hakuehtoa :)
+          hakuehtoa
         </p>
       </div>
     )
@@ -78,7 +82,14 @@ const Listing = props => {
         {kivatMaat.map(maa => {
           return (
             <div key={maa.name}>
-              {maa.name}
+              {maa.name}{" "}
+              <button
+                onClick={() =>
+                  setNewSearch(maa.name)
+                }
+              >
+                Avaa
+              </button>
             </div>
           )
         })}
@@ -124,6 +135,7 @@ const App = () => {
       <Listing
         maat={maat}
         newSearch={newSearch}
+        setNewSearch={setNewSearch}
       />
     </div>
   )
