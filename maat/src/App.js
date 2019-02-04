@@ -3,6 +3,7 @@ import React, {
   useEffect
 } from "react"
 import maaService from "./services/maat"
+import "./App.css"
 
 const Input = props => {
   const {
@@ -33,7 +34,35 @@ const Listing = props => {
   )
   console.log(kivatMaat)
 
-  if (kivatMaat.length > 10) {
+  if (kivatMaat.length === 1) {
+    const maa = kivatMaat[0]
+    return (
+      <div>
+        <h1>{maa.name}</h1>
+        <br />
+        <p>Capital: {maa.capital}</p>
+        <p>
+          Population: {maa.population}
+        </p>
+        <br />
+        <h2>Languages</h2>
+        <br />
+        <ul>
+          {maa.languages.map(
+            language => (
+              <li key={language.name}>
+                {language.name}
+              </li>
+            )
+          )}
+        </ul>
+        <img className='App-flag'
+          src={maa.flag}
+          alt="Flag of {maa.name} is coming here soon ..."
+        />
+      </div>
+    )
+  } else if (kivatMaat.length > 10) {
     return (
       <div>
         <p>
@@ -43,15 +72,18 @@ const Listing = props => {
       </div>
     )
   } else {
-    return kivatMaat.map(maa => {
+    return (
+      <div>{
+     kivatMaat.map(maa => {
       return (
         <div key={maa.name}>
           {maa.name}
         </div>
       )
-    })
-  }
-}
+      }
+      )
+      }
+    </div>)}}
 
 const App = () => {
   const hooker = () => {
