@@ -56,7 +56,8 @@ const Listing = props => {
             )
           )}
         </ul>
-        <img className='App-flag'
+        <img
+          className="App-flag"
           src={maa.flag}
           alt="Flag of {maa.name} is coming here soon ..."
         />
@@ -73,17 +74,18 @@ const Listing = props => {
     )
   } else {
     return (
-      <div>{
-     kivatMaat.map(maa => {
-      return (
-        <div key={maa.name}>
-          {maa.name}
-        </div>
-      )
-      }
-      )
-      }
-    </div>)}}
+      <div>
+        {kivatMaat.map(maa => {
+          return (
+            <div key={maa.name}>
+              {maa.name}
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+}
 
 const App = () => {
   const hooker = () => {
