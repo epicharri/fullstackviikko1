@@ -2,7 +2,7 @@ import React, {
   useState,
   useEffect
 } from "react"
-//import axios from 'axios'
+
 import personService from "./services/persons"
 
 const Input = props => {
@@ -89,7 +89,10 @@ const Listing = props => {
     })
 }
 
-const Notification = ({ message, style }) => {
+const Notification = ({
+  message,
+  style
+}) => {
   if (message === null) {
     return null
   }
@@ -101,15 +104,11 @@ const Notification = ({ message, style }) => {
   )
 }
 
-
 const App = () => {
   const [
     persons,
     setPersons
   ] = useState([])
-
-
-
 
   const hook = () => {
     console.log("effect")
@@ -141,29 +140,24 @@ const App = () => {
   ] = useState("")
 
   const [
-    errorMessage, 
+    errorMessage,
     setErrorMessage
-  ] = useState('')
+  ] = useState("")
 
   const [
     errorStyle,
     setErrorStyle
-  ] = useState('normal')
+  ] = useState("normal")
 
   const renderErrorMessage = props => {
     console.log(props)
-  
+
     setErrorMessage(props)
     setTimeout(() => {
       setErrorMessage(null)
-      setErrorStyle('normal')
-    }, 
-      3000
-    )
+      setErrorStyle("normal")
+    }, 3000)
   }
-
-
-
 
   const handleNewName = event => {
     event.preventDefault()
@@ -210,26 +204,29 @@ const App = () => {
       personService
         .deletePersonById(id)
         .then(() => {
-          setErrorStyle('success')
-          renderErrorMessage('Henkilön poisto onnistui!')
+          setErrorStyle("success")
+          renderErrorMessage(
+            "Henkilön poisto onnistui!"
+          )
           return hook()
-          }
-        )
+        })
         .catch(() => {
-          setErrorStyle('error')
-          renderErrorMessage('Henkilö oli jo poistettu!')
+          setErrorStyle("error")
+          renderErrorMessage(
+            "Henkilö oli jo poistettu!"
+          )
           return hook()
-        }
-        )
+        })
     }
   }
 
   const addPerson = event => {
     event.preventDefault()
-    if (newName === '') {
-      setErrorStyle('error')
-      renderErrorMessage('Et ole vielä syöttänyt nimeä.')
-      
+    if (newName === "") {
+      setErrorStyle("error")
+      renderErrorMessage(
+        "Et ole vielä syöttänyt nimeä."
+      )
     } else {
       if (
         !persons
@@ -243,14 +240,15 @@ const App = () => {
         personService
           .create(person)
           .then(returnedPerson => {
-
             setPersons(
               persons.concat(
                 returnedPerson
               )
             )
-            setErrorStyle('success')
-            renderErrorMessage('Lisääminen onnistui!')
+            setErrorStyle("success")
+            renderErrorMessage(
+              "Lisääminen onnistui!"
+            )
 
             setNewName("")
             setNewNumber("")
@@ -275,16 +273,19 @@ const App = () => {
               uusiPerson
             )
             .then(() => {
-              setErrorStyle('success')
-              renderErrorMessage(`Päivittäminen onnistui!`)
+              setErrorStyle("success")
+              renderErrorMessage(
+                `Päivittäminen onnistui!`
+              )
               return hook()
             })
             .catch(() => {
-              setErrorStyle('error')
-              renderErrorMessage('Henkilö oli jo poistettu, ei voi päivittää!')
+              setErrorStyle("error")
+              renderErrorMessage(
+                "Henkilö oli jo poistettu, ei voi päivittää!"
+              )
               return hook()
-            }
-            )
+            })
         }
       }
     }
@@ -294,7 +295,10 @@ const App = () => {
     <div>
       <h2>Puhelinluettelo</h2>
 
-      <Notification message={errorMessage} style={errorStyle} />
+      <Notification
+        message={errorMessage}
+        style={errorStyle}
+      />
 
       <Input
         text={"Hae: "}
