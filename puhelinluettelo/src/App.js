@@ -150,7 +150,7 @@ const App = () => {
     setErrorStyle
   ] = useState('normal')
 
-  const handleErrorMessage = props => {
+  const renderErrorMessage = props => {
     console.log(props)
   
     setErrorMessage(props)
@@ -211,13 +211,13 @@ const App = () => {
         .deletePersonById(id)
         .then(() => {
           setErrorStyle('success')
-          handleErrorMessage('Henkilön poisto onnistui!')
+          renderErrorMessage('Henkilön poisto onnistui!')
           return hook()
           }
         )
         .catch(() => {
           setErrorStyle('error')
-          handleErrorMessage('Henkilö oli jo poistettu!')
+          renderErrorMessage('Henkilö oli jo poistettu!')
           return hook()
         }
         )
@@ -228,7 +228,7 @@ const App = () => {
     event.preventDefault()
     if (newName === '') {
       setErrorStyle('error')
-      handleErrorMessage('Et ole vielä syöttänyt nimeä.')
+      renderErrorMessage('Et ole vielä syöttänyt nimeä.')
       
     } else {
       if (
@@ -250,7 +250,7 @@ const App = () => {
               )
             )
             setErrorStyle('success')
-            handleErrorMessage('Lisääminen onnistui!')
+            renderErrorMessage('Lisääminen onnistui!')
 
             setNewName("")
             setNewNumber("")
@@ -276,12 +276,12 @@ const App = () => {
             )
             .then(() => {
               setErrorStyle('success')
-              handleErrorMessage(`Päivittäminen onnistui!`)
+              renderErrorMessage(`Päivittäminen onnistui!`)
               return hook()
             })
             .catch(() => {
               setErrorStyle('error')
-              handleErrorMessage('Henkilö oli jo poistettu, ei voi päivittää!')
+              renderErrorMessage('Henkilö oli jo poistettu, ei voi päivittää!')
               return hook()
             }
             )
