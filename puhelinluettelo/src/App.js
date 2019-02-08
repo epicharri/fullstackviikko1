@@ -77,7 +77,7 @@ const Listing = props => {
     .map(person => {
       return (
         <div key={person.id}>
-          {person.name} {person.number}
+          {person.name} {person.number} {" "}
           <button
             value={person.id}
             onClick={deletePerson}
@@ -317,7 +317,7 @@ const App = () => {
         }
       />
 
-      <h2>Numerot</h2>
+      <h2>Puhelinnumerot</h2>
 
       <Listing
         persons={persons}
